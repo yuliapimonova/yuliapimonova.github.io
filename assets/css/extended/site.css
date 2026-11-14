@@ -1,0 +1,751 @@
+/* Site styles, layered on the hugo-website/PaperMod theme.
+   Colors and fonts come only from tokens in assets/css/core/theme-vars.css. */
+
+/* ---------- Base ---------- */
+html,
+body {
+    background: var(--bg);
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--body);
+    -webkit-font-smoothing: antialiased;
+}
+
+body,
+.site-header,
+.site-footer,
+.btn,
+.theme-toggle,
+a {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
+        text-decoration-color 200ms ease;
+}
+
+code,
+pre,
+kbd {
+    font-family: var(--font-mono);
+}
+
+::selection {
+    background: var(--soft);
+    color: var(--soft-ink);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+p,
+li {
+    text-wrap: pretty;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-inline: 32px;
+}
+
+.list {
+    background: var(--bg);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* List separator (partials/sep.html): space instead of a dot. */
+.sep {
+    display: inline-block;
+    width: 20px;
+}
+
+/* Skip link: hidden until focused by keyboard. */
+.skip-link {
+    position: absolute;
+    left: 20px;
+    top: -64px;
+    z-index: 10;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    top: 12px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding-block: 14px;
+}
+
+.wordmark {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink);
+    padding-block: 10px;
+}
+
+.wordmark-first {
+    color: var(--accent);
+}
+
+.site-nav-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav a {
+    display: block;
+    padding-block: 10px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.site-nav a:hover {
+    color: var(--accent);
+}
+
+.site-nav a[aria-current="page"] {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+}
+
+.theme-toggle svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+[data-theme="dark"] .icon-moon,
+:root:not([data-theme="dark"]) .icon-sun {
+    display: none;
+}
+
+/* ---------- Main ---------- */
+.main {
+    max-width: 1080px;
+    min-height: calc(100vh - 146px);
+    margin: 0 auto;
+    padding: 88px 32px 96px;
+}
+
+.page-header {
+    margin: 0 0 40px;
+}
+
+.page-header h1,
+.post-title,
+.hero-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+}
+
+/* Home name is the one 62px headline; inner page titles are smaller so they
+   sit in proportion with 17px body text. */
+.hero-name {
+    font-size: 62px;
+    line-height: 1.04;
+}
+
+.page-header h1,
+.post-title {
+    font-size: 40px;
+    line-height: 1.08;
+}
+
+.page-header .meta {
+    margin: 12px 0 0;
+}
+
+/* ---------- Inline links ---------- */
+.main a {
+    color: var(--ink);
+    box-shadow: none;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
+}
+
+.main a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+}
+
+/* ---------- Metadata (mono) ---------- */
+.meta,
+.post-meta,
+.dated-list time,
+.dated-list .tags,
+.post-content .when {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px 64px;
+}
+
+.hero-text {
+    flex: 999 1 540px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-text p {
+    margin: 0;
+}
+
+.hero-subtitle {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--body);
+}
+
+.hero-visual {
+    position: relative;
+    flex: 0 0 280px;
+    width: 280px;
+    height: 240px;
+}
+
+.motif {
+    position: absolute;
+    inset: 0;
+    width: 280px;
+    height: 240px;
+}
+
+.motif-edge {
+    fill: none;
+    stroke: var(--edge);
+    stroke-width: 1.3;
+}
+
+.motif-node {
+    fill: var(--node);
+    stroke: var(--edge);
+    stroke-width: 1.3;
+}
+
+.motif-accent {
+    fill: var(--accent);
+    stroke: none;
+}
+
+.portrait {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--edge);
+}
+
+/* ---------- Buttons ---------- */
+.button-row {
+    margin-top: 44px;
+}
+
+.button-row ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main a.btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.main a.btn:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+}
+
+.main a.btn-primary {
+    padding: 0 20px;
+    border: 0;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+}
+
+.main a.btn-primary:hover {
+    background: color-mix(in srgb, var(--accent) 88%, var(--bg));
+    color: var(--on-accent);
+}
+
+/* ---------- Content sections: label column + content column ---------- */
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 64px;
+    margin-top: 72px;
+}
+
+.section-first {
+    margin-top: 80px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+}
+
+/* Inner pages: the first section follows the page header directly. */
+.page-header + .section-first,
+.page-header + .post-single > .section-first:first-child {
+    margin-top: 0;
+}
+
+.section-spacer {
+    flex: 0 1 180px;
+}
+
+.section-label,
+.post-content h2 {
+    flex: 0 1 180px;
+    margin: 0;
+    padding: 4px 0 0;
+    border: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    color: var(--accent);
+}
+
+.section-label::before,
+.post-content h2::before {
+    content: "// ";
+    content: "// " / "";
+}
+
+.section-body {
+    flex: 999 1 520px;
+    max-width: 680px;
+    min-width: 0;
+}
+
+.section-body > :last-child {
+    margin-bottom: 0;
+}
+
+/* Lead paragraph: first paragraph of the bio. */
+.home-bio p {
+    margin: 0 0 20px;
+}
+
+.home-bio p:first-child {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 22px;
+}
+
+.home-bio p:last-child {
+    margin-bottom: 0;
+}
+
+.skills {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.skills li {
+    margin-bottom: 8px;
+}
+
+.skills strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.skills li::marker,
+.post-content li::marker {
+    color: var(--muted);
+}
+
+.more {
+    margin: 16px 0 0;
+    font-size: 15px;
+}
+
+/* ---------- Dated lists (news, posts) ---------- */
+.dated-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dated-list li {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.dated-list time {
+    padding-top: 2px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.term-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.term-list li {
+    margin-bottom: 12px;
+}
+
+/* ---------- Publications ---------- */
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-list .pub {
+    margin-bottom: 16px;
+}
+
+.pub-title {
+    color: var(--ink);
+}
+
+.pub-authors strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.pub-status {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.pub-links a {
+    white-space: nowrap;
+}
+
+/* ---------- Projects list ---------- */
+.project-title {
+    margin: 0 0 8px;
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+.main .project-title a {
+    text-decoration-color: transparent;
+}
+
+.main .project-title a:hover {
+    text-decoration-color: var(--accent);
+}
+
+.project-title::first-letter {
+    text-transform: uppercase;
+}
+
+.project-entry p {
+    margin: 0;
+}
+
+/* Project short names keep their own casing (LAMeL, buhito). */
+.section-label.is-name {
+    text-transform: none;
+}
+
+/* ---------- Single pages (posts, projects, CV) ---------- */
+.post-single {
+    max-width: none;
+}
+
+/* CV date lines ({.when} in Markdown) sit tight under their role. */
+.post-content p.when {
+    margin: 0 0 12px;
+}
+
+.post-content > :first-child {
+    margin-top: 0;
+}
+
+.post-tags-line {
+    margin: 40px 0 0;
+}
+
+.post-content {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--body);
+}
+
+.post-content p,
+.post-content ul,
+.post-content ol {
+    margin-bottom: 20px;
+}
+
+.post-content h2 {
+    margin: 72px 0 20px;
+}
+
+.post-content h3 {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 40px 0 4px;
+}
+
+.post-content h3 + p {
+    margin-top: 0;
+}
+
+.post-content strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    margin: 0;
+    padding: 0 4px;
+    font-size: 0.875em;
+}
+
+.post-content pre code,
+.post-content .highlight pre {
+    border: 0;
+    padding: 0;
+}
+
+.post-content .highlight,
+.post-content pre {
+    background: var(--surface) !important;
+    border: 1px solid var(--border);
+}
+
+.post-content .highlight pre {
+    margin: 0;
+    padding: 16px 20px;
+}
+
+.copy-code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.post-content blockquote {
+    border-inline-start: 1px solid var(--border);
+    color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.site-footer a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 4px;
+}
+
+.site-footer a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+    .container {
+        padding-inline: 20px;
+    }
+
+    /* Header: wordmark and toggle on one row, nav links wrap below. */
+    .site-nav-group {
+        display: contents;
+    }
+
+    .site-header-row nav {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .site-header-row {
+        row-gap: 0;
+    }
+
+    .site-nav {
+        gap: 0 12px;
+    }
+
+    .section {
+        margin-top: 48px;
+    }
+
+    .section-first {
+        margin-top: 64px;
+        padding-top: 40px;
+    }
+
+    .main {
+        padding: 48px 20px 64px;
+    }
+
+    .hero-name {
+        font-size: 40px;
+        line-height: 1.08;
+    }
+
+    .page-header h1,
+    .post-title {
+        font-size: 32px;
+    }
+
+    .section-spacer {
+        display: none;
+    }
+
+    .home-bio p:first-child {
+        font-size: 20px;
+    }
+
+    .hero-visual {
+        margin-inline: auto;
+    }
+
+
+    .dated-list li {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}

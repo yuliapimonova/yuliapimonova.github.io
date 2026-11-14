@@ -1,0 +1,68 @@
+{{- define "main" }}
+{{- $h := site.Params.home }}
+<div class="home">
+
+  {{- /* 1. Hero: name, headline, role, location; portrait on the molecular-graph motif */}}
+  <header class="hero">
+    <div class="hero-text">
+      <h1 class="hero-name">{{ site.Title }}</h1>
+      <p class="hero-subtitle">{{ $h.headline }}</p>
+      <p class="meta">{{ $h.role }}<br>{{ partial "nosep.html" $h.location }}</p>
+    </div>
+    <div class="hero-visual">
+      <svg class="motif" viewBox="0 0 280 240" width="280" height="240" aria-hidden="true" focusable="false">
+        <polyline class="motif-edge" points="14,196 58,150 40,64 110,22 214,30 262,92 248,186 180,226"></polyline>
+        <line class="motif-edge" x1="58" y1="150" x2="140" y2="120"></line>
+        <line class="motif-edge" x1="214" y1="30" x2="140" y2="120"></line>
+        <line class="motif-edge" x1="262" y1="92" x2="140" y2="120"></line>
+        {{- range slice "14,196" "40,64" "110,22" "262,92" "248,186" "180,226" "140,120" }}
+        {{- $xy := split . "," }}
+        <circle class="motif-node" cx="{{ index $xy 0 }}" cy="{{ index $xy 1 }}" r="5"></circle>
+        {{- end }}
+        <circle class="motif-accent" cx="58" cy="150" r="6"></circle>
+        <circle class="motif-accent" cx="214" cy="30" r="6"></circle>
+      </svg>
+      {{- with resources.Get $h.photo }}
+      {{- $img := .Fill "400x400 Center q85 webp" }}
+      <img class="portrait" src="{{ $img.RelPermalink }}" width="160" height="160" alt="{{ $h.photoAlt }}">
+      {{- end }}
+    </div>
+  </header>
+
+  {{- /* 2. Links row: Resume (PDF) is the one primary button once the file exists. */}}
+  {{- $links := slice }}
+  {{- range $h.links }}
+    {{- $url := .url }}
+    {{- $show := true }}
+    {{- with .file }}
+      {{- $show = fileExists (path.Join "static" .) }}
+      {{- $url = . | relURL }}
+    {{- end }}
+    {{- if $show }}
+      {{- $links = $links | append (dict "name" .name "url" $url "primary" .primary "copy" .copy) }}
+    {{- end }}
+  {{- end }}
+  <nav class="button-row" aria-label="Contact and documents">
+    <ul>
+    {{- range $links }}
+      <li><a class="btn{{ if .primary }} btn-primary{{ end }}" href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}{{ with .copy }} data-copy="{{ . }}"{{ end }}>{{ .name }}</a></li>
+    {{- end }}
+    </ul>
+    <p class="visually-hidden" aria-live="polite" id="copy-status"></p>
+  </nav>
+
+  {{- /* 3–7. Labelled sections, built from the same partials as the inner pages. */}}
+  {{- partial "section.html" (dict "label" "About" "first" true "class" "home-bio" "body" .Content) }}
+
+  {{- partial "section.html" (dict "label" "Skills" "body" (partial "skills-list.html" .)) }}
+
+  {{- with first ($h.newsCount | default 6) (where site.RegularPages "Section" "news").ByDate.Reverse }}
+  {{- partial "section.html" (dict "label" "News" "body" (partial "news-list.html" .) "more" (dict "url" "news/" "text" "All news →")) }}
+  {{- end }}
+
+  {{- with first ($h.postsCount | default 3) (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+  {{- partial "section.html" (dict "label" "Latest posts" "body" (partial "post-list.html" .) "more" (dict "url" "posts/" "text" "All posts →")) }}
+  {{- end }}
+
+</div>
+{{- end }}

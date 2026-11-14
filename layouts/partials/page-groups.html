@@ -1,0 +1,21 @@
+{{- /* Groups a list page's pages into labelled sections. Returns a slice of dict {label, pages}. */ -}}
+{{- $groups := slice }}
+{{- if eq .Section "projects" }}
+  {{- range .RegularPages.ByWeight }}
+    {{- $groups = $groups | append (dict "label" (partial "project-kicker.html" .).kicker "pages" (slice .)) }}
+  {{- end }}
+{{- else if eq .Kind "taxonomy" }}
+  {{- $groups = $groups | append (dict "label" "" "pages" .Pages) }}
+{{- else }}
+  {{- $pages := .RegularPages.ByDate.Reverse }}
+  {{- if eq .Section "publications" }}
+    {{- with where $pages "Params.status" "in preparation" }}
+      {{- $groups = $groups | append (dict "label" "In preparation" "pages" .) }}
+    {{- end }}
+    {{- $pages = where $pages "Params.status" "!=" "in preparation" }}
+  {{- end }}
+  {{- range $pages.GroupByDate "2006" }}
+    {{- $groups = $groups | append (dict "label" .Key "pages" .Pages) }}
+  {{- end }}
+{{- end }}
+{{- return $groups }}

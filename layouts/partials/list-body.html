@@ -1,0 +1,12 @@
+{{- /* One list template for every section (publications, projects, news, posts)
+       and taxonomy page. Page title comes from baseof; items are grouped into
+       labelled sections by partials/page-groups.html. */}}
+{{- $item := "post-list.html" }}
+{{- if eq .Kind "taxonomy" }}{{ $item = "term-list.html" }}
+{{- else }}
+  {{- $item = index (dict "news" "news-list.html" "publications" "pub-list.html" "projects" "project-list.html") .Section | default "post-list.html" }}
+{{- end }}
+{{- with .Content }}
+{{- partial "section.html" (dict "body" . "first" true "class" "post-content") }}
+{{- end }}
+{{- partial "sections.html" (dict "groups" (partial "page-groups.html" .) "item" $item "name" (eq .Section "projects")) }}

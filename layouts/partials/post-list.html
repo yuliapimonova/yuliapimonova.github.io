@@ -1,0 +1,9 @@
+{{- /* Page collection of posts (or any dated pages) as dated one-liners. */ -}}
+<ul class="dated-list">
+  {{- range . }}
+  <li>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+    <span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .GetTerms "tags" }}{{ partial "sep.html" . }}<span class="tags">{{ range $i, $t := . }}{{ if $i }}, {{ end }}{{ $t.LinkTitle }}{{ end }}</span>{{ end }}</span>
+  </li>
+  {{- end }}
+</ul>

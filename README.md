@@ -1,3 +1,3 @@
-## Contact
+Personal website of Yulia Pimonova. Built with Hugo and the PaperMod theme, starting from Pascal Michaillat's hugo-website template (MIT). Deployed to GitHub Pages.
 
-If you encounter issues deploying your site or wish to customise it further, you can open an issue or contact Yulia via email at [pimonova.ya@gmail.com](mailto:pimonova.ya@gmail.com).
+Hugo version: 0.147.2 extended.

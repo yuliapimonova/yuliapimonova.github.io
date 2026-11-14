@@ -1,0 +1,28 @@
+/* Code highlighting from the design tokens (replaces PaperMod's Catppuccin
+   palette). Requires markup.highlight.noClasses: false. */
+.chroma { color: var(--body); background-color: var(--surface); }
+.chroma .lnlinks { outline: none; text-decoration: none; color: inherit; }
+.chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
+.chroma .hl { background-color: var(--soft); }
+.chroma .lnt, .chroma .ln { color: var(--muted); margin-right: 0.4em; padding: 0 0.4em; }
+.chroma .line { display: flex; }
+/* Keywords, builtins */
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt,
+.chroma .nb, .chroma .bp, .chroma .ow { color: var(--accent); }
+/* Names: functions, classes, namespaces, decorators */
+.chroma .nf, .chroma .fm, .chroma .nc, .chroma .nn, .chroma .nd, .chroma .ne { color: var(--ink); font-weight: 500; }
+/* Strings */
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2,
+.chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color: var(--soft-ink); }
+/* Numbers */
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: var(--accent); }
+/* Comments */
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp, .chroma .cpf { color: var(--muted); font-style: italic; }
+/* Operators, punctuation */
+.chroma .o, .chroma .p { color: var(--muted); }
+.chroma .err { color: var(--ink); }
+.chroma .gd { color: var(--muted); text-decoration: line-through; }
+.chroma .gi { color: var(--accent); }
+.chroma .ge { font-style: italic; }
+.chroma .gs { font-weight: 600; }
