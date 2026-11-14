@@ -1,0 +1,6 @@
+{{- /* Taxonomy terms (e.g. /tags/) with page counts. */ -}}
+<ul class="term-list">
+  {{- range . }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ partial "sep.html" . }}<span class="meta">{{ len .Pages }}</span></li>
+  {{- end }}
+</ul>

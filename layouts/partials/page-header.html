@@ -1,0 +1,9 @@
+{{- /* Title + one mono meta line, shared by every inner page. */ -}}
+{{- $title := cond (eq .Kind "404") "Page not found" .Title }}
+{{- $meta := partial "page-meta.html" . | strings.TrimSpace }}
+<header class="page-header">
+  <h1>{{ $title }}</h1>
+  {{- with $meta }}
+  <p class="meta">{{ . | safeHTML }}</p>
+  {{- end }}
+</header>

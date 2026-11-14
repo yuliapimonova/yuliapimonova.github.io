@@ -1,0 +1,11 @@
+{{- /* PDF links from site.Params.home.links that have a `file` in static/; missing files are skipped. */ -}}
+{{- $out := slice }}
+{{- range site.Params.home.links }}
+  {{- $name := .name }}
+  {{- with .file }}
+    {{- if fileExists (path.Join "static" .) }}
+      {{- $out = $out | append (printf "<a href=\"%s\">%s</a>" (. | relURL) $name) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- delimit $out (partial "sep.html" .) | safeHTML -}}

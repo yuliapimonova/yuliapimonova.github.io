@@ -1,0 +1,94 @@
+/* Design tokens. The only file with color values.
+   Light on :root; dark under [data-theme="dark"] (set by the toggle) and
+   under prefers-color-scheme when no theme has been chosen (no-JS fallback). */
+
+:root {
+    --bg: #FFFFFF;
+    --surface: #F5F7F9;
+    --border: #E2E6EB;
+    --ink: #0E1116;
+    --body: #2A3038;
+    --muted: #545C68;
+    --accent: #0A6B66;
+    --on-accent: #FFFFFF;
+    --soft: #E7F2F0;
+    --soft-ink: #0A4743;
+    --line: #9CCBC6;
+    --edge: #CDD4DC;
+    --node: #FFFFFF;
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    --bg: #0E1116;
+    --surface: #161A20;
+    --border: #262C35;
+    --ink: #EEF0F2;
+    --body: #CDD2D8;
+    --muted: #A1A9B4;
+    --accent: #5CC8BC;
+    --on-accent: #04201D;
+    --soft: #11292A;
+    --soft-ink: #BDEAE4;
+    --line: #2F6A64;
+    --edge: #353D49;
+    --node: #0E1116;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --bg: #0E1116;
+        --surface: #161A20;
+        --border: #262C35;
+        --ink: #EEF0F2;
+        --body: #CDD2D8;
+        --muted: #A1A9B4;
+        --accent: #5CC8BC;
+        --on-accent: #04201D;
+        --soft: #11292A;
+        --soft-ink: #BDEAE4;
+        --line: #2F6A64;
+        --edge: #353D49;
+        --node: #0E1116;
+        color-scheme: dark;
+    }
+}
+
+:root {
+    /* Fonts */
+    --font-serif: Newsreader, Georgia, serif;
+    --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* PaperMod's own variables, mapped onto the tokens above. */
+    --theme: var(--bg);
+    --entry: var(--surface);
+    --primary: var(--ink);
+    --secondary: var(--muted);
+    --tertiary: var(--border);
+    --gray: var(--muted);
+    --content: var(--body);
+    --code-block-bg: var(--surface);
+    --code-bg: var(--surface);
+    --darkcolor: var(--accent);
+    --lightcolor: var(--line);
+
+    --gap: 24px;
+    --content-gap: 20px;
+    --radius: 0;
+    --semibold: 500;
+    --textsize: 17px;
+    --lineheight: 1.7;
+    --headersize: 15px;
+    --footersize: 13px;
+    --header-height: 72px;
+    --footer-height: 72px;
+    --nav-width: 1080px;
+    --main-width: 1080px;
+    --homesize: 17px;
+    --h1size: 62px;
+    --entrysize: 15px;
+    --lineclamp: 8;
+    --marginleft: 24px;
+}

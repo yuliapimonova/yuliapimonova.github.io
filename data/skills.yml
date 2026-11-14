@@ -1,0 +1,9 @@
+# Skills, shown on the CV page and the home page (single source).
+- area: "ML & AI"
+  items: "PyTorch, GNNs, MPNNs, meta-learning, uncertainty quantification, active learning, scikit-learn, XGBoost; LLM-assisted research and coding workflows (MCP)"
+- area: "GPU & HPC"
+  items: "CUDA-accelerated scientific workloads (PyTorch, HOOMD-blue), SLURM, distributed and parallel workflows, Dask, Linux, performance profiling"
+- area: "Scientific computing"
+  items: "Python, numpy, scipy, pandas, networkx, RDKit, ASE, Git, Jupyter, unit testing"
+- area: "Computational chemistry"
+  items: "molecular dynamics, DFT, quantum chemistry, HOOMD-blue, LAMMPS, Gaussian, Q-Chem"

@@ -1,0 +1,7 @@
+{{- /* Page collection of projects: title (after the short name) + summary. */ -}}
+{{- range . }}
+<div class="project-entry">
+  <h3 class="project-title"><a href="{{ .RelPermalink }}">{{ (partial "project-kicker.html" .).rest }}</a></h3>
+  <p>{{ .Summary | plainify }}</p>
+</div>
+{{- end }}

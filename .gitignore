@@ -1,0 +1,8 @@
+# Hugo build artifacts
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+
+# Previous hand-written site, kept locally for reference
+legacy-site/

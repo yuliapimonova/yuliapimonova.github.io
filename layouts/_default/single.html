@@ -1,0 +1,36 @@
+{{- define "main" }}
+{{- /* Single pages (projects, posts, CV). Title comes from baseof.
+       Default: the body in one section, labelled with the project short name.
+       `sectioned: true` in front matter: each "## Heading" becomes its own
+       labelled section (used by the CV). */}}
+<article class="post-single">
+  {{- if .Params.sectioned }}
+    {{- $parts := split .Content "<h2" }}
+    {{- $first := true }}
+    {{- range $i, $part := $parts }}
+      {{- if eq $i 0 }}
+        {{- with strings.TrimSpace $part }}
+          {{- partial "section.html" (dict "body" . "first" true "class" "post-content") }}
+          {{- $first = false }}
+        {{- end }}
+      {{- else }}
+        {{- $label := replaceRE `(?s)^[^>]*>(.*?)</h2>.*$` "$1" $part | plainify }}
+        {{- $body := replaceRE `(?s)^[^>]*>.*?</h2>` "" $part }}
+        {{- partial "section.html" (dict "label" $label "body" $body "first" $first "class" "post-content") }}
+        {{- $first = false }}
+      {{- end }}
+    {{- end }}
+  {{- else }}
+    {{- $label := "" }}
+    {{- if eq .Section "projects" }}{{ $label = (partial "project-kicker.html" .).kicker }}{{ end }}
+    {{- $body := .Content }}
+    {{- with .GetTerms "tags" }}
+      {{- $tags := slice }}
+      {{- range . }}{{ $tags = $tags | append (printf "<a href=\"%s\">%s</a>" .RelPermalink .LinkTitle) }}{{ end }}
+      {{- $body = printf "%s<p class=\"meta post-tags-line\">%s</p>" $body (delimit $tags ", ") }}
+    {{- end }}
+    {{- partial "section.html" (dict "label" $label "name" true "body" $body "first" true "class" "post-content") }}
+  {{- end }}
+  {{- if (.Param "comments") }}{{ partial "comments.html" . }}{{ end }}
+</article>
+{{- end }}

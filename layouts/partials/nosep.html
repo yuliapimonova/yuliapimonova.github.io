@@ -1,0 +1,2 @@
+{{- /* Replaces " · " separators in text/HTML (content, config strings) with partials/sep.html. */ -}}
+{{- replace (string .) " · " (partial "sep.html" .) | safeHTML -}}

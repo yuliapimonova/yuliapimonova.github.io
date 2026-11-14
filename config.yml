@@ -1,0 +1,118 @@
+baseURL: "https://yuliapimonova.github.io/"
+title: Yulia Pimonova
+theme: PaperMod
+languageCode: en-us
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+pagination:
+  pagerSize: 20
+
+taxonomies:
+  tag: tags
+
+outputs:
+  home: [HTML, RSS]
+  section: [HTML, RSS]
+
+menu:
+  main:
+    - name: About
+      url: /
+      weight: 1
+    - name: Publications
+      url: /publications/
+      weight: 2
+    - name: Projects
+      url: /projects/
+      weight: 3
+    - name: Blog
+      url: /posts/
+      weight: 4
+    - name: News
+      url: /news/
+      weight: 5
+    - name: CV
+      url: /cv/
+      weight: 6
+
+params:
+  description: "Yulia Pimonova: machine learning scientist for chemistry and materials. Graph neural networks, low-data ML and uncertainty quantification for molecular property prediction."
+  author: Yulia Pimonova
+  images: ["img/og-profile.jpg"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: light
+  hideFooter: false
+  disableThemeToggle: true   # PaperMod's toggle off; the site's own toggle is in partials/header.html
+  ShowShareButtons: false
+  ShowReadingTime: false
+  disableSpecial1stPost: true
+  disableAnchoredHeadings: true
+  ShowPostNavLinks: false
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowAllPagesInArchive: false
+  mainSections: [posts]
+  ShowToc: false
+  disableScrollToTop: true
+  TocOpen: true
+  ShowWordCount: false
+  hideAuthor: true   # single-author site: no byline
+  UseHugoToc: true
+  comments: false
+  math: false   # enabled per-section (posts) via cascade
+
+  pubs:
+    myName: "Pimonova, Y."
+    citations: 157
+    scholar: "https://scholar.google.com/citations?user=e_uOeA4AAAAJ&hl=en&oi=ao"
+
+  # ---- Home page (layouts/index.html) ----
+  home:
+    photo: img/profile.jpg
+    photoAlt: "Portrait of Yulia Pimonova"
+    headline: "Machine learning scientist for chemistry and materials"
+    role: "Postdoctoral Research Associate, Los Alamos National Laboratory"
+    location: "Greater Boston, MA · open to remote"
+    newsCount: 6
+    postsCount: 3
+    # Files in static/. A link whose file is missing is hidden automatically.
+    links:
+      - name: Email
+        url: "mailto:pimonova.ya@gmail.com"
+        copy: "pimonova.ya@gmail.com"   # click also copies the address
+      - name: LinkedIn
+        url: "https://linkedin.com/in/ypimonova"
+      - name: GitHub
+        url: "https://github.com/yuliapimonova"
+      - name: Google Scholar
+        url: "https://scholar.google.com/citations?user=e_uOeA4AAAAJ&hl=en&oi=ao"
+      - name: Resume (PDF)
+        file: Pimonova_Resume.pdf
+        primary: true           # teal primary button once the file exists
+      - name: CV (PDF)
+        file: Pimonova_CV.pdf
+
+  assets:
+    disableScrollBarStyle: true
+    avatar: img/avatar.png   # browser-tab icon source (Notion avatar); made round at build time
+  cover:
+    hiddenInList: true
+    hiddenInSingle: false
+  label:
+    text: Yulia Pimonova
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: false     # content is Markdown only; no raw HTML
+    parser:
+      attribute:
+        block: true     # allows {.class} after a paragraph (e.g. CV date lines)
+  highlight:
+    guessSyntax: true
+    noClasses: false   # colors come from assets/css/includes/chroma-styles.css (design tokens)
+  tableOfContents:
+    endLevel: 2
+    ordered: false
+    startLevel: 2

@@ -1,0 +1,16 @@
+{{- /* One labelled section: "// label" column beside a content column.
+       dict: label, body (HTML), first (bool), name (bool: keep label casing),
+             class (extra body classes), more (dict url, text). */ -}}
+<section class="section{{ if .first }} section-first{{ end }}">
+  {{- with .label }}
+  <h2 class="section-label{{ if $.name }} is-name{{ end }}">{{ . }}</h2>
+  {{- else }}
+  <span class="section-spacer"></span>
+  {{- end }}
+  <div class="section-body{{ with .class }} {{ . }}{{ end }}">
+    {{- partial "nosep.html" .body }}
+    {{- with .more }}
+    <p class="more"><a href="{{ .url | relURL }}">{{ .text }}</a></p>
+    {{- end }}
+  </div>
+</section>

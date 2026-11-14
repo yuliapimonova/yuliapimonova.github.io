@@ -1,0 +1,10 @@
+{{- /* Renders a list of news pages as dated one-liners. Context: a page collection. */ -}}
+<ul class="dated-list news-list">
+  {{- range . }}
+  {{- $p := . }}
+  <li>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+    <span>{{ .Content | replaceRE "^\\s*<p>(.*)</p>\\s*$" "$1" | safeHTML }}{{ with .Params.link }} <a href="{{ . }}"{{ if hasPrefix . "http" }} rel="noopener"{{ end }}>{{ $p.Params.linkText | default "Link" }}</a>{{ end }}</span>
+  </li>
+  {{- end }}
+</ul>

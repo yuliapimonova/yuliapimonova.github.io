@@ -1,0 +1,7 @@
+{{- /* Renders groups of pages as sections. dict: groups (slice of dict label, pages),
+       item (partial that renders a page collection), name (bool). */ -}}
+{{- $item := .item }}
+{{- $name := .name }}
+{{- range $i, $g := .groups }}
+  {{- partial "section.html" (dict "label" $g.label "first" (eq $i 0) "name" $name "body" (partial $item $g.pages)) }}
+{{- end }}

@@ -1,0 +1,6 @@
+{{- /* Short name of a project: `kicker` param, else the part of the title before ": ". Returns a dict {kicker, rest}. */ -}}
+{{- $parts := split .Title ": " }}
+{{- $kicker := .Params.kicker }}
+{{- $rest := .Title }}
+{{- if gt (len $parts) 1 }}{{ $kicker = $kicker | default (index $parts 0) }}{{ $rest = delimit (after 1 $parts) ": " }}{{ end }}
+{{- return (dict "kicker" $kicker "rest" $rest) }}

@@ -1,0 +1,24 @@
+{{- /* One publication as a list item. Context: a page in content/publications/. */ -}}
+{{- $me := site.Params.pubs.myName | default "Pimonova, Y." }}
+{{- $authors := slice }}
+{{- range .Params.authors }}
+  {{- if eq . $me }}{{ $authors = $authors | append (printf "<strong>%s</strong>" .) }}{{ else }}{{ $authors = $authors | append . }}{{ end }}
+{{- end }}
+{{- $status := .Params.status | default "published" }}
+<li class="pub">
+  {{- $authorStr := delimit $authors ", " }}
+  <span class="pub-authors">{{ $authorStr | safeHTML }}{{ if not (or (hasSuffix $authorStr ".") (hasSuffix $authorStr ".</strong>")) }}.{{ end }}</span>
+  <span class="pub-title">“{{ .Title }}.”</span>
+  {{- $venue := slice }}
+  {{- with .Params.venue }}{{ $venue = $venue | append (printf "<em>%s</em>" .) }}{{ end }}
+  {{- if ne $status "in preparation" }}{{ $venue = $venue | append (.Date.Format "2006") }}{{ end }}
+  {{- with .Params.details }}{{ $venue = $venue | append . }}{{ end }}
+  {{- with $venue }} <span class="pub-venue">{{ delimit . ", " | safeHTML }}.</span>{{ end }}
+  {{- if ne $status "published" }} <span class="pub-status">{{ $status | strings.FirstUpper }}</span>{{ end }}
+  <span class="pub-links">
+    {{- with .Params.pdf }} <a href="{{ . | relURL }}">[PDF]</a>{{ end }}
+    {{- with .Params.code }} <a href="{{ . }}" rel="noopener">[Code]</a>{{ end }}
+    {{- with .Params.arxiv }} <a href="https://arxiv.org/abs/{{ . }}" rel="noopener">[arXiv]</a>{{ end }}
+    {{- with .Params.doi }} <a href="https://doi.org/{{ . }}" rel="noopener">[DOI]</a>{{ end }}
+  </span>
+</li>

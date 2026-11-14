@@ -1,0 +1,13 @@
+{{- /* Meta line under the page title, chosen by page kind/section. */ -}}
+{{- if and (eq .Kind "section") (eq .Section "publications") }}
+  {{- $counted := where .RegularPages "Params.status" "!=" "in preparation" }}
+  {{ len $counted }} publications, newest first
+  {{- with site.Params.pubs.citations }}{{ partial "sep.html" . }}{{ . }} citations{{ end }}
+  {{- with site.Params.pubs.scholar }}{{ partial "sep.html" . }}<a href="{{ . }}" rel="noopener">Google Scholar</a>{{ end }}
+{{- else if and (eq .Kind "section") (eq .Section "posts") }}
+  <a href="{{ "posts/index.xml" | relURL }}">RSS feed</a>
+{{- else if .Params.docLinks }}
+  {{- partial "doc-links.html" . }}
+{{- else if and (eq .Kind "page") (not (.Param "hideMeta")) }}
+  {{- partial "post_meta.html" . }}
+{{- end }}

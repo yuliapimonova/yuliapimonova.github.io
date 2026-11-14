@@ -1,0 +1,6 @@
+{{- /* Skills from data/skills.yml (shared by the home page and the CV). */ -}}
+<ul class="skills">
+  {{- range site.Data.skills }}
+  <li><strong>{{ .area }}:</strong> {{ .items }}</li>
+  {{- end }}
+</ul>
